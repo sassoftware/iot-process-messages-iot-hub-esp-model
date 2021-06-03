@@ -1,0 +1,84 @@
+<project name="iothub_test" threads="1" pubsub="auto" heartbeat-interval="1">
+  <metadata>
+    <meta id="studioUploadedBy">brstar</meta>
+    <meta id="studioUploaded">1619537004805</meta>
+    <meta id="studioModifiedBy">brstar</meta>
+    <meta id="studioModified">1620329400896</meta>
+    <meta id="layout">{"cq1":{"Functional":{"x":-25,"y":100},"IoTHubSource":{"x":-30,"y":-60},"Source1":{"x":-30,"y":-155}}}</meta>
+  </metadata>
+  <contqueries>
+    <contquery name="cq1">
+      <windows>
+        <window-source pubsub="true" insert-only="true" index="pi_EMPTY" autogen-key="true" name="IoTHubSource">
+          <schema>
+            <fields>
+              <field name="messageId" type="int64" key="true"/>
+              <field name="deviceId" type="string"/>
+              <field name="temperature" type="string"/>
+              <field name="humidity" type="string"/>
+            </fields>
+          </schema>
+          <connectors>
+            <connector class="eventhubs" name="EventHubConnector0">
+              <description><![CDATA[Partition 0]]></description>
+              <properties>
+                <property name="type"><![CDATA[pub]]></property>
+                <property name="eventhubsconnectionstring"><![CDATA[Event Hub-compatible endpoint]]></property>
+                <property name="eventhubspath"><![CDATA[Event Hub-compatible name]]></property>
+                <property name="eventhubsconsumergroup"><![CDATA[$default]]></property>
+                <property name="eventhubspartition"><![CDATA[0]]></property>
+                <property name="eventhubsformat"><![CDATA[json]]></property>
+              </properties>
+            </connector>
+            <connector class="eventhubs" name="EventHubConnector1">
+              <description><![CDATA[Partition 1]]></description>
+              <properties>
+                <property name="type"><![CDATA[pub]]></property>
+                <property name="eventhubsconnectionstring"><![CDATA[Event Hub-compatible endpoint]]></property>
+                <property name="eventhubspath"><![CDATA[Event Hub-compatible name]]></property>
+                <property name="eventhubsconsumergroup"><![CDATA[$default]]></property>
+                <property name="eventhubspartition"><![CDATA[1]]></property>
+                <property name="eventhubsformat"><![CDATA[json]]></property>
+              </properties>
+            </connector>
+            <connector class="eventhubs" name="EventHubConnector2">
+              <description><![CDATA[Partition 2]]></description>
+              <properties>
+                <property name="type"><![CDATA[pub]]></property>
+                <property name="eventhubsconnectionstring"><![CDATA[Event Hub-compatible endpoint]]></property>
+                <property name="eventhubspath"><![CDATA[Event Hub-compatible name]]></property>
+                <property name="eventhubsconsumergroup"><![CDATA[$default]]></property>
+                <property name="eventhubspartition"><![CDATA[2]]></property>
+                <property name="eventhubsformat"><![CDATA[json]]></property>
+              </properties>
+            </connector>
+            <connector class="eventhubs" name="EventHubConnector3">
+              <description><![CDATA[Partition 3]]></description>
+              <properties>
+                <property name="type"><![CDATA[pub]]></property>
+                <property name="eventhubsconnectionstring"><![CDATA[Event Hub-compatible endpoint]]></property>
+                <property name="eventhubspath"><![CDATA[Event Hub-compatible name]]></property>
+                <property name="eventhubsconsumergroup"><![CDATA[$default]]></property>
+                <property name="eventhubspartition"><![CDATA[3]]></property>
+                <property name="eventhubsformat"><![CDATA[json]]></property>
+              </properties>
+            </connector>
+          </connectors>
+        </window-source>
+        <window-functional pubsub="true" name="Functional">
+          <schema>
+            <fields>
+              <field name="messageId" type="int64" key="true"/>
+              <field name="deviceId" type="string"/>
+              <field name="temperature" type="string"/>
+              <field name="humidity" type="string"/>
+            </fields>
+          </schema>
+        </window-functional>
+      </windows>
+      <edges>
+        <edge source="IoTHubSource" target="Functional"/>
+      </edges>
+    </contquery>
+  </contqueries>
+</project>
